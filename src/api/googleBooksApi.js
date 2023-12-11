@@ -41,6 +41,16 @@ class GoogleBooksApi {
     }
   }
 
+  static async getBook(bookId) {
+    try {
+      const response = await this.request(`volumes/${bookId}`);
+      return response;
+    } catch (error) {
+      console.error(`Error fetching book ${bookId}:`, error);
+      throw error;
+    }
+  }
+
 }
 
 GoogleBooksApi.token = "AIzaSyB_O97xzM6Jal7mAYJRt0XAr6r8mE_U5mk"

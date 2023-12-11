@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GoogleBooksApi from '../api/googleBooksApi';
 import coverUnavailable from './bookCover.jpeg'
+import { Link } from 'react-router-dom';
 
 const SearchBooks = () => {
   const [query, setQuery] = useState('');
@@ -35,12 +36,14 @@ const SearchBooks = () => {
                 <h2>Search Results:</h2>
                 {searchResults.map((book) => (
                 <div key={book.id}>
+                  <Link to={`/book/${book.id}`}>
                     {book.volumeInfo.imageLinks?.thumbnail ? (
-                    <img src={book.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
+                      <img src={book.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
                     ) : (
-                    <img src={coverUnavailable} alt="Book Cover" />
+                      <img src={coverUnavailable} alt="Book Cover" />
                     )}
                     <p>Title: {book.volumeInfo.title}</p>
+                  </Link>
                     <p>Author: {book.volumeInfo.authors?.join(', ')}</p>
                 </div>
                 ))}

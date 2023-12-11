@@ -8,6 +8,7 @@ import Login from './pages/Login.js'
 import Signup from './pages/Signup.js'
 import EditProfile from './pages/EditProfile.js';
 import UserProvider from './context/UserProvider';
+import BookPage from './pages/BookPage';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/search" element={<SearchBooks/>}/>
+            <Route path="/book/:id" element={<BookPage />} />
             <Route path='/auth/register' element={<Signup onSignupSuccess={handleSignupSuccess}/>}/>
             <Route path='/auth/login' element={<Login onLoginSuccess={handleLoginSuccess}/>}/>
             <Route path='/editprofile' element={<EditProfile/>}/>
