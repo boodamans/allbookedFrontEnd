@@ -68,6 +68,38 @@ class allbookedApi {
       const res = await this.request(`reviews/book/${google_books_api_id}`);
       return res.reviews;
     }
+
+      // Like a review
+  static async likeReview(username, reviewId) {
+    try {
+      const response = await this.request(`reviewlikes`, { username, reviewId }, "post");
+      return response.likeId;
+    } catch (error) {
+      console.error("Error liking review:", error);
+      throw error;
+    }
+  }
+
+  // Unlike a review
+  static async unlikeReview(username, reviewId) {
+    try {
+      await this.request(`reviewlikes`, { username, reviewId }, "delete");
+    } catch (error) {
+      console.error("Error unliking review:", error);
+      throw error;
+    }
+  }
+
+  // Get like count for a review
+  static async getReviewLikesCount(reviewId) {
+    try {
+      const response = await this.request(`reviewlikes/count/${reviewId}`, {}, "get");
+      return response.likeCount;
+    } catch (error) {
+      console.error("Error getting review likes count:", error);
+      throw error;
+    }
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)

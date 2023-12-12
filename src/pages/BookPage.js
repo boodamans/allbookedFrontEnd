@@ -44,8 +44,15 @@ const BookPage = ({ match }) => {
       <p>{book.volumeInfo.title}</p>
       <p>Author: {book.volumeInfo.authors?.join(', ')}</p>
       <p>{book.volumeInfo.description}</p>
-      <ReviewForm google_books_api_id={id} username={currentUser.username} />
-      <Review google_books_api_id={id} />
+
+      {currentUser ? (
+        <>
+          <ReviewForm google_books_api_id={id} username={currentUser.username} />
+        </>
+      ) : (
+          <p>Log in to leave a review!</p>
+          )}
+          <Review google_books_api_id={id} />
     </div>
   );
 };
