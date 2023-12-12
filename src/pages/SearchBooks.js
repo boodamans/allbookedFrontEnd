@@ -42,9 +42,9 @@ const SearchBooks = () => {
                     ) : (
                       <img src={coverUnavailable} alt="Book Cover" />
                     )}
-                    <p>Title: {book.volumeInfo.title}</p>
+                    <p>{book.volumeInfo.title}</p>
                   </Link>
-                    <p>Author: {book.volumeInfo.authors?.join(', ')}</p>
+                    <p>by {book.volumeInfo.authors?.join(', ')}</p>
                 </div>
                 ))}
             </div>

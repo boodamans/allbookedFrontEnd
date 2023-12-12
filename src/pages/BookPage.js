@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import GoogleBooksApi from '../api/googleBooksApi';
 import coverUnavailable from './bookCover.jpeg';
+import ReviewForm from './ReviewForm';
+import UserContext from "../context/UserContext.js";
+import Review from './Review.js';
 
 const BookPage = ({ match }) => {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams(); // Assuming you're using React Router and book ID is in the route params
+  const { id } = useParams(); 
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -37,10 +41,11 @@ const BookPage = ({ match }) => {
         src={book.volumeInfo.imageLinks?.thumbnail || coverUnavailable}
         alt="Book Cover"
       />
-      <p>Title: {book.volumeInfo.title}</p>
+      <p>{book.volumeInfo.title}</p>
       <p>Author: {book.volumeInfo.authors?.join(', ')}</p>
-      <p>Description: {book.volumeInfo.description}</p>
-      {/* Add more details as needed */}
+      <p>{book.volumeInfo.description}</p>
+      <ReviewForm google_books_api_id={id} username={currentUser.username} />
+      <Review google_books_api_id={id} />
     </div>
   );
 };

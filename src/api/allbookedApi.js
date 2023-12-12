@@ -55,6 +55,19 @@ class allbookedApi {
     let res = await this.request(`users/${username}`, data, "patch");
     return res.user;
   }
+
+/** Post a review */
+
+  static async postReview(username, reviewData) {
+    let res = await this.request(`reviews`, { username, ...reviewData }, "post");
+    return res.review;
+  }
+  
+    // Get reviews for a specific book
+    static async getBookReviews(google_books_api_id) {
+      const res = await this.request(`reviews/book/${google_books_api_id}`);
+      return res.reviews;
+    }
 }
 
 // for now, put token ("testuser" / "password" on class)
