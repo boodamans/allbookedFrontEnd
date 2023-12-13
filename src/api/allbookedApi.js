@@ -62,6 +62,24 @@ class allbookedApi {
     let res = await this.request(`reviews`, { username, ...reviewData }, "post");
     return res.review;
   }
+
+// delete a review
+
+  static async deleteReview(review_id) {
+    let res = await this.request(`reviews/${review_id}`, {review_id}, "delete");
+    return res
+  }
+
+  // Edit a review
+  static async editReview(username, reviewId, updatedReviewData) {
+    try {
+      const res = await this.request(`reviews/${reviewId}`, { username, ...updatedReviewData }, "patch");
+      return res.review;
+    } catch (error) {
+      console.error(`Error editing review ${reviewId}:`, error);
+      throw error;
+    }
+  }
   
     // Get reviews for a specific book
     static async getBookReviews(google_books_api_id) {
@@ -99,6 +117,21 @@ class allbookedApi {
   static async getLikedReviews(username) {
     const res = await this.request(`reviewlikes/user/${username}`);
     return res.likes;
+  }
+
+  static async getReviewById(review_id) {
+    const res = await this.request(`reviews/${review_id}`);
+    return res.review;
+  }
+
+  static async getUserReviews(username) {
+    try {
+      const res = await this.request(`reviews/user/${username}`);
+      return res.reviews;
+    } catch (error) {
+      console.error('Error getting user reviews:', error);
+      throw error;
+    }
   }
 }
 

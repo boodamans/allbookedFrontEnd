@@ -16,7 +16,7 @@ function NavBar() {
             {currentUser ? (
             // If user is logged in, show logout button
             <>
-              <NavLink to="/editprofile">Edit Profile</NavLink>
+              <NavLink to={`/profile/${currentUser.username}`}>Profile</NavLink>
               <NavLink to="/" onClick={logoutUser}>
                 Log Out {currentUser.username}
               </NavLink>

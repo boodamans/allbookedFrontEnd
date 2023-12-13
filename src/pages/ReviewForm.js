@@ -32,6 +32,7 @@ const ReviewForm = ({ google_books_api_id, username, onReviewSubmit }) => {
       // Clear the form fields after submission
       setRating(5);
       setReviewText('');
+      window.location.reload();
     } catch (error) {
       console.error('Error submitting review:', error);
       // Handle error as needed
