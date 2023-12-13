@@ -92,13 +92,13 @@ class allbookedApi {
 
   // Get like count for a review
   static async getReviewLikesCount(reviewId) {
-    try {
-      const response = await this.request(`reviewlikes/count/${reviewId}`, {}, "get");
-      return response.likeCount;
-    } catch (error) {
-      console.error("Error getting review likes count:", error);
-      throw error;
-    }
+    const res = await this.request(`reviewlikes/count/${reviewId}`);
+    return res.likeCount;
+  }
+
+  static async getLikedReviews(username) {
+    const res = await this.request(`reviewlikes/user/${username}`);
+    return res.likes;
   }
 }
 
