@@ -32,7 +32,7 @@ const UserProvider = ({ children }) => {
       setToken(token);
       localStorage.setItem('token', token);
 
-      const user = await allbookedApi.getCurrentUser();
+      const user = await allbookedApi.getCurrentUser(username);
       setCurrentUser(user);
     } catch (error) {
       console.error('Error logging in:', error);

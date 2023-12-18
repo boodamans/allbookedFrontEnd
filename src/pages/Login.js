@@ -20,7 +20,7 @@ function Login({ onLoginSuccess }) {
     e.preventDefault();
 
     try {
-      loginUser(formData.username, formData.password);
+      await loginUser(formData.username, formData.password);
       navigate("/")
     } catch (error) {
       console.error("Login failed:", error);

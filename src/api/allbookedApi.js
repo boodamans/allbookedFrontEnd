@@ -136,7 +136,7 @@ class allbookedApi {
 }
 
 // for now, put token ("testuser" / "password" on class)
-allbookedApi.token = "";
+allbookedApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJvb2RhIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNzAyNTc1MTE0fQ.g8k-3YwzADQ4ti--vdZdWjvWzB3QV_EJyyD2KT5xoQA";
 
 
 export default allbookedApi;

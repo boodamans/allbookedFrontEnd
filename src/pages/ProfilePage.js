@@ -10,7 +10,7 @@ const ProfilePage = () => {
 
   if (!currentUser) {
     // Redirect to login or handle the case where there's no logged-in user
-    return <p>Please log in to view your profile.</p>;
+    return <p><Link to='/auth/login'>Log in</Link> to view {username}'s profile.</p>;
   }
 
   const isCurrentUser = currentUser.username === username;

@@ -59,10 +59,9 @@ const UserReviews = ({ username }) => {
               alt="Book Thumbnail"
               />
           </Link>
-          <p>Book Title: {review.bookDetails?.volumeInfo?.title}</p>
+          <p>{review.bookDetails?.volumeInfo?.title}</p>
           <p>Rating: {review.rating}/10</p>
           <p>{review.review_text}</p>
-          <p>Created at: {review.created_at}</p>
           {isCurrentUser && (
             <>
               <Link to={`/editreview/${review.review_id}`}>

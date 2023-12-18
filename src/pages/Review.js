@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {Link} from 'react-router-dom';
 import allbookedApi from '../api/allbookedApi';
 import UserContext from "../context/UserContext";
 
@@ -107,10 +108,9 @@ const Review = ({ google_books_api_id }) => {
       <h2>Reviews:</h2>
       {reviews.map((review) => (
         <div key={review.review_id}>
-          <p>User: {review.user_id}</p>
+          <p>User: <Link to={`/profile/${review.user_id}`}>{review.user_id}</Link></p>
           <p>Rating: {review.rating}/10</p>
           <p>{review.review_text}</p>
-          <p>Created at: {review.created_at}</p>
           {currentUser && (
             <>
               {isReviewLiked(review.review_id) ? (
