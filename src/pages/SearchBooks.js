@@ -11,7 +11,6 @@ const SearchBooks = () => {
     try {
       const results = await GoogleBooksApi.searchBooks(query);
       setSearchResults(results);
-      console.log(searchResults)
     } catch (error) {
       console.error('Error searching books:', error);
     }

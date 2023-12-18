@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import allbookedApi from '../api/allbookedApi';
 import GoogleBooksApi from '../api/googleBooksApi';
 import UserContext from '../context/UserContext';
+import coverUnavailable from './bookCover.jpeg'
+
 
 const UserReviews = ({ username }) => {
   const [userReviews, setUserReviews] = useState([]);
@@ -55,7 +57,7 @@ const UserReviews = ({ username }) => {
         <div key={review.review_id}>
           <Link to={`/book/${review.google_books_api_id}`}>
             <img
-              src={review.bookDetails?.volumeInfo?.imageLinks?.thumbnail || 'placeholder_thumbnail_url'}
+              src={review.bookDetails?.volumeInfo?.imageLinks?.thumbnail || coverUnavailable}
               alt="Book Thumbnail"
               />
           </Link>

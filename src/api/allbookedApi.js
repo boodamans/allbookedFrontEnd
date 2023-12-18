@@ -133,6 +133,48 @@ class allbookedApi {
       throw error;
     }
   }
+
+    // Follow a user
+    static async followUser(currentUser, targetUsername) {
+      try {
+        const res = await this.request('follow', {
+          followerUsername: currentUser.username,
+          followeeUsername: targetUsername,
+        }, 'post');
+  
+        return res.message;
+      } catch (error) {
+        console.error(`Error following ${targetUsername}:`, error);
+        throw error;
+      }
+    }
+  
+    // Unfollow a user
+    static async unfollowUser(currentUser, targetUsername) {
+      try {
+        const res = await this.request('follow', {
+          followerUsername: currentUser.username,
+          followeeUsername: targetUsername,
+        }, 'delete');
+  
+        return res.message; 
+      } catch (error) {
+        console.error(`Error unfollowing ${targetUsername}:`, error);
+        throw error;
+      }
+    }
+
+    // Fetch a user's follows
+
+    static async getFollowing(username) {
+      try {
+        const response = await this.request(`users/${username}/following`);
+        return response.following;
+      } catch (error) {
+        console.error(`Error getting following for ${username}:`, error);
+        throw error;
+      }
+    }
 }
 
 // for now, put token ("testuser" / "password" on class)
