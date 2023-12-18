@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import {Link} from 'react-router-dom';
 import allbookedApi from '../api/allbookedApi';
 import UserContext from "../context/UserContext";
+import './styles/Review.css'
 
 const Review = ({ google_books_api_id }) => {
   const [reviews, setReviews] = useState([]);
@@ -91,7 +92,6 @@ const Review = ({ google_books_api_id }) => {
       }));
     } catch (error) {
       console.error('Error unliking review:', error);
-      // Handle error as needed
     }
   };
 
@@ -104,23 +104,25 @@ const Review = ({ google_books_api_id }) => {
   }
 
   return (
-    <div>
+    <div className="review-container">
       <h2>Reviews:</h2>
       {reviews.map((review) => (
-        <div key={review.review_id}>
-          <p>User: <Link to={`/profile/${review.user_id}`}>{review.user_id}</Link></p>
-          <p>Rating: {review.rating}/10</p>
-          <p>{review.review_text}</p>
-          {currentUser && (
-            <>
-              {isReviewLiked(review.review_id) ? (
-                <button onClick={() => handleUnlike(currentUser.username, review.review_id)}>Unlike</button>
-              ) : (
-                <button onClick={() => handleLike(currentUser.username, review.review_id)}>Like</button>
-              )}
-            </>
-          )}
-          <p>Likes: {likeCounts[review.review_id]}</p>
+        <div key={review.review_id} className="review-item">
+          <p className="review-user">User: <Link to={`/profile/${review.user_id}`}>{review.user_id}</Link></p>
+          <p className="review-rating">Rating: {review.rating}/10</p>
+          <p className="review-text">{review.review_text}</p>
+          <div className="review-actions">
+            {currentUser && (
+              <>
+                {isReviewLiked(review.review_id) ? (
+                  <button className="review-unlike-button" onClick={() => handleUnlike(currentUser.username, review.review_id)}>Unlike</button>
+                ) : (
+                  <button className="review-like-button" onClick={() => handleLike(currentUser.username, review.review_id)}>Like</button>
+                )}
+              </>
+            )}
+            <p className="review-likes">Likes: {likeCounts[review.review_id]}</p>
+          </div>
         </div>
       ))}
     </div>

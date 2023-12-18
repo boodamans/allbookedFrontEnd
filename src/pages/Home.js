@@ -2,12 +2,13 @@ import React, { useContext } from "react";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext.js";
+import "./styles/Home.css";
 
 function Home() {
   const { currentUser } = useContext(UserContext);
 
   return (
-    <div>
+    <div className='home-container'>
       {currentUser ? (
         // If user is logged in, show a welcome message
         <div>
@@ -21,10 +22,10 @@ function Home() {
           <hr className="my-2" />
           <p className="lead">
             <Link to="/auth/login">
-              <Button color="primary">Login</Button>
+              <Button color="primary" className='btn-primary'>Login</Button>
             </Link>{" "}
             <Link to="/auth/register">
-              <Button color="success">Sign Up</Button>
+              <Button color="success" className='btn-success'>Sign Up</Button>
             </Link>
           </p>
         </div>

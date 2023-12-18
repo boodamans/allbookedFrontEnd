@@ -1,0 +1,41 @@
+.book-page-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .book-cover {
+    max-width: 200px;
+    margin-bottom: 20px;
+    box-shadow: 10px 10px 10px darkgrey;
+    size-adjust: 150%;
+  }
+  
+  .book-title {
+    font-size: 1.5em;
+    color: #8B5A2B; 
+    margin-bottom: 10px;
+  }
+  
+  .author-info {
+    color: #4d4d4d; 
+    margin-bottom: 15px;
+  }
+  
+  .book-description {
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .review-form {
+    margin-top: 20px;
+  }
+  
+  .login-message {
+    color: #4d4d4d;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .reviews {
+    margin-top: 20px;
+  }

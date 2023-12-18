@@ -3,6 +3,7 @@ import UserContext from '../context/UserContext';
 import { useParams, Link } from 'react-router-dom';
 import UserReviews from './UserReviews';
 import allbookedApi from '../api/allbookedApi';
+import './styles/ProfilePage.css'
 
 const ProfilePage = () => {
   const { currentUser } = useContext(UserContext);
@@ -50,19 +51,21 @@ const ProfilePage = () => {
   const isCurrentUser = currentUser.username === username;
 
   return (
-    <div>
-      <h1>{username}</h1>
-      {isCurrentUser && <Link to="/editprofile">Edit Profile</Link>}
+    <div className="profile-page-container">
+      <div className="profile-page-header">
+        <h1 className="profile-page-title">{username}</h1>
+        {isCurrentUser && <Link to="/editprofile" className="edit-profile-link">Edit Profile</Link>}
+      </div>
       {!isCurrentUser && (
         <div>
           {isFollowing ? (
-            <button onClick={handleUnfollow}>Unfollow</button>
+            <button onClick={handleUnfollow} className="following-button">Unfollow</button>
           ) : (
-            <button onClick={handleFollow}>Follow</button>
+            <button onClick={handleFollow} className="follow-button">Follow</button>
           )}
         </div>
       )}
-      <h3>Reviews:</h3>
+      <h3 className="user-reviews">Reviews:</h3>
       <UserReviews username={username} />
     </div>
   );

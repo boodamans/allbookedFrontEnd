@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import GoogleBooksApi from '../api/googleBooksApi';
-import coverUnavailable from './bookCover.jpeg'
+import coverUnavailable from './bookCover.jpeg';
 import { Link } from 'react-router-dom';
+import './styles/SearchBooks.css';
 
 const SearchBooks = () => {
   const [query, setQuery] = useState('');
@@ -18,40 +19,43 @@ const SearchBooks = () => {
 
   return (
     <div>
-      <div>
+      <div className="search-container">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter book title or author"
+          className="search-input"
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} className="search-button">
+          Search
+        </button>
       </div>
 
-            {searchResults && (
-        <div>
-            {searchResults.length > 0 ? (
-            <div>
-                <h2>Search Results:</h2>
-                {searchResults.map((book) => (
-                <div key={book.id}>
-                  <Link to={`/book/${book.id}`}>
-                    {book.volumeInfo.imageLinks?.thumbnail ? (
-                      <img src={book.volumeInfo.imageLinks.thumbnail} alt="Book Cover" />
-                    ) : (
-                      <img src={coverUnavailable} alt="Book Cover" />
-                    )}
-                    <p>{book.volumeInfo.title}</p>
+      {searchResults && (
+        <div className="results-container">
+          <h2>Search Results:</h2>
+          {searchResults.length > 0 ? (
+            <div className="results-container">
+              {searchResults.map((book) => (
+                <div key={book.id} className="book-container">
+                  <Link to={`/book/${book.id}`} className="book-link">
+                    <img
+                      src={book.volumeInfo.imageLinks?.thumbnail || coverUnavailable}
+                      alt="Book Cover"
+                      className="book-cover"
+                    />
+                    <p className="book-title">{book.volumeInfo.title}</p>
                   </Link>
-                    <p>by {book.volumeInfo.authors?.join(', ')}</p>
+                  <p className="author-info">by {book.volumeInfo.authors?.join(', ')}</p>
                 </div>
-                ))}
+              ))}
             </div>
-            ) : (
+          ) : (
             <p></p>
-            )}
+          )}
         </div>
-        )}
+      )}
     </div>
   );
 };

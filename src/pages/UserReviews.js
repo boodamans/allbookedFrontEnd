@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import allbookedApi from '../api/allbookedApi';
 import GoogleBooksApi from '../api/googleBooksApi';
 import UserContext from '../context/UserContext';
-import coverUnavailable from './bookCover.jpeg'
-
+import coverUnavailable from './bookCover.jpeg';
+import './styles/UserReviews.css';
 
 const UserReviews = ({ username }) => {
   const [userReviews, setUserReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {currentUser} = useContext(UserContext)
+  const { currentUser } = useContext(UserContext);
   const isCurrentUser = currentUser.username === username;
-
 
   useEffect(() => {
     const fetchUserReviews = async () => {
@@ -19,9 +18,9 @@ const UserReviews = ({ username }) => {
         const userReviewsData = await allbookedApi.getUserReviews(username);
         setUserReviews(userReviewsData);
         const bookDetailsPromises = userReviewsData.map(async (review) => {
-            const bookDetails = await GoogleBooksApi.getBook(review.google_books_api_id);
-            return { ...review, bookDetails };
-          });
+          const bookDetails = await GoogleBooksApi.getBook(review.google_books_api_id);
+          return { ...review, bookDetails };
+        });
         const reviewsWithBookDetails = await Promise.all(bookDetailsPromises);
         setUserReviews(reviewsWithBookDetails);
       } catch (error) {
@@ -52,26 +51,32 @@ const UserReviews = ({ username }) => {
   }
 
   return (
-    <div>
+    <div className="user-reviews-container">
       {userReviews.map((review) => (
-        <div key={review.review_id}>
+        <div key={review.review_id} className="user-review-card">
           <Link to={`/book/${review.google_books_api_id}`}>
             <img
               src={review.bookDetails?.volumeInfo?.imageLinks?.thumbnail || coverUnavailable}
               alt="Book Thumbnail"
-              />
+              className="user-review-thumbnail"
+            />
           </Link>
-          <p>{review.bookDetails?.volumeInfo?.title}</p>
-          <p>Rating: {review.rating}/10</p>
-          <p>{review.review_text}</p>
+          <p className="user-review-title">{review.bookDetails?.volumeInfo?.title}</p>
+          <p className="user-review-rating">Rating: {review.rating}/10</p>
+          <p className="user-review-text">{review.review_text}</p>
           {isCurrentUser && (
             <>
               <Link to={`/editreview/${review.review_id}`}>
-                <button>Edit Review</button>
+                <button className="edit-review-button">Edit Review</button>
               </Link>
-              <button onClick={() => handleDeleteReview(review.review_id)}>Delete Review</button>
+              <button
+                onClick={() => handleDeleteReview(review.review_id)}
+                className="delete-review-button"
+              >
+                Delete Review
+              </button>
             </>
-          )}        
+          )}
         </div>
       ))}
     </div>

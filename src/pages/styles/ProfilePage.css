@@ -1,0 +1,52 @@
+.profile-page-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .profile-page-header {
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-page-title {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  
+  .edit-profile-link {
+    color: #8B5A2B;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .follow-button {
+    background-color: #8B5A2B;
+    color: #f0f2f5;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .follow-button:hover {
+    background-color: #634028;
+  }
+  
+  .following-button {
+    background-color: #ccc;
+    color: #000;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .following-button:hover {
+    background-color: #999;
+  }
+  
+  .user-reviews {
+    margin-top: 20px;
+  }
+  

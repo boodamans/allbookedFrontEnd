@@ -5,6 +5,7 @@ import coverUnavailable from './bookCover.jpeg';
 import ReviewForm from './ReviewForm';
 import UserContext from "../context/UserContext.js";
 import Review from './Review.js';
+import './styles/BookPage.css';
 
 const BookPage = ({ match }) => {
   const [book, setBook] = useState(null);
@@ -36,23 +37,27 @@ const BookPage = ({ match }) => {
   }
 
   return (
-    <div>
+    <div className="book-page-container">
       <img
         src={book.volumeInfo.imageLinks?.thumbnail || coverUnavailable}
         alt="Book Cover"
+        className="book-cover"
       />
-      <p>{book.volumeInfo.title}</p>
-      <p>Author: {book.volumeInfo.authors?.join(', ')}</p>
-      <p>{book.volumeInfo.description}</p>
+      <p className="book-title">{book.volumeInfo.title}</p>
+      <p className="author-info">Author: {book.volumeInfo.authors?.join(', ')}</p>
+      <p className="book-description">{book.volumeInfo.description}</p>
 
       {currentUser ? (
-        <>
+        <div className="review-form">
           <ReviewForm google_books_api_id={id} username={currentUser.username} />
-        </>
+        </div>
       ) : (
-          <p>Log in to leave a review!</p>
-          )}
-          <Review google_books_api_id={id} />
+        <p className="login-message">Log in to leave a review!</p>
+      )}
+
+      <div className="reviews">
+        <Review google_books_api_id={id} />
+      </div>
     </div>
   );
 };
