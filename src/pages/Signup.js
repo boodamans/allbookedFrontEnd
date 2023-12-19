@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 import allbookedApi from "../api/allbookedApi";
 import UserContext from "../context/UserContext";
+import './styles/Signup.css'
 
 function Signup({ onSignupSuccess }) {
   const navigate = useNavigate();
@@ -39,15 +40,18 @@ function Signup({ onSignupSuccess }) {
   };
 
   return (
-    <CardBody>
+    <div className="signup-container">
       <Card>
         <CardTitle className="font-weight-bold text-center">
           <h2>Sign Up!</h2>
         </CardTitle>
-        <Form onSubmit={handleSubmit}>
+        <Form className="signup-form" onSubmit={handleSubmit}>
           <FormGroup>
-            <Label for="username">Username</Label>
+            <Label className="signup-label" for="username">
+              Username
+            </Label>
             <Input
+              className="signup-input"
               type="text"
               name="username"
               id="username"
@@ -57,8 +61,11 @@ function Signup({ onSignupSuccess }) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="password">Password</Label>
+            <Label className="signup-label" for="password">
+              Password
+            </Label>
             <Input
+              className="signup-input"
               type="password"
               name="password"
               id="password"
@@ -68,8 +75,11 @@ function Signup({ onSignupSuccess }) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="firstName">First Name</Label>
+            <Label className="signup-label" for="firstName">
+              First Name
+            </Label>
             <Input
+              className="signup-input"
               type="text"
               name="firstName"
               id="firstName"
@@ -78,8 +88,11 @@ function Signup({ onSignupSuccess }) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="lastName">Last Name</Label>
+            <Label className="signup-label" for="lastName">
+              Last Name
+            </Label>
             <Input
+              className="signup-input"
               type="text"
               name="lastName"
               id="lastName"
@@ -88,8 +101,11 @@ function Signup({ onSignupSuccess }) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="email">Email</Label>
+            <Label className="signup-label" for="email">
+              Email
+            </Label>
             <Input
+              className="signup-input"
               type="email"
               name="email"
               id="email"
@@ -97,12 +113,12 @@ function Signup({ onSignupSuccess }) {
               onChange={handleChange}
             />
           </FormGroup>
-          <Button type="submit" color="primary">
+          <Button className="signup-button" type="submit" color="primary">
             Sign Up
           </Button>
         </Form>
       </Card>
-    </CardBody>
+    </div>
   );
 }
 

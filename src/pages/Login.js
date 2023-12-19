@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, CardBody, CardTitle } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 import UserContext from "../context/UserContext";
+import './styles/Login.css';
 
 function Login({ onLoginSuccess }) {
   const navigate = useNavigate();
@@ -28,16 +29,17 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <CardBody>
+    <div className="login-container">
       <Card>
         <div>
           <CardTitle className="font-weight-bold text-center">
             <h2>Login</h2>
           </CardTitle>
-          <form onSubmit={handleSubmit}>
-            <label>
+          <form className="login-form" onSubmit={handleSubmit}>
+            <label className="login-label">
               Username:
               <input
+                className="login-input"
                 type="text"
                 name="username"
                 value={formData.username}
@@ -46,9 +48,10 @@ function Login({ onLoginSuccess }) {
               />
             </label>
             <br />
-            <label>
+            <label className="login-label">
               Password:
               <input
+                className="login-input"
                 type="password"
                 name="password"
                 value={formData.password}
@@ -57,11 +60,13 @@ function Login({ onLoginSuccess }) {
               />
             </label>
             <br />
-            <button type="submit">Login</button>
+            <button className="login-button" type="submit">
+              Login
+            </button>
           </form>
         </div>
       </Card>
-    </CardBody>
+    </div>
   );
 }
 

@@ -4,6 +4,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { Card, CardBody, CardTitle } from "reactstrap";
 import allbookedApi from "../api/allbookedApi";
 import UserContext from "../context/UserContext";
+import "./styles/EditProfile.css";
 
 function EditProfile() {
   const navigate = useNavigate();
@@ -54,17 +55,20 @@ function EditProfile() {
   };
 
   return (
-    <div>
+    <div className="edit-profile-container">
       {currentUser ? (
         <CardBody>
           <Card>
             <CardTitle className="font-weight-bold text-center">
               <h2>Edit Profile</h2>
             </CardTitle>
-            <Form onSubmit={handleSubmit}>
+            <Form className="edit-profile-form" onSubmit={handleSubmit}>
               <FormGroup>
-                <Label for="password">Password</Label>
+                <Label className="edit-profile-label" for="password">
+                  Password
+                </Label>
                 <Input
+                  className="edit-profile-input"
                   type="password"
                   name="password"
                   id="password"
@@ -73,8 +77,11 @@ function EditProfile() {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="firstName">First Name</Label>
+                <Label className="edit-profile-label" for="firstName">
+                  First Name
+                </Label>
                 <Input
+                  className="edit-profile-input"
                   type="text"
                   name="firstName"
                   id="firstName"
@@ -83,8 +90,11 @@ function EditProfile() {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="lastName">Last Name</Label>
+                <Label className="edit-profile-label" for="lastName">
+                  Last Name
+                </Label>
                 <Input
+                  className="edit-profile-input"
                   type="text"
                   name="lastName"
                   id="lastName"
@@ -93,8 +103,11 @@ function EditProfile() {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="email">Email</Label>
+                <Label className="edit-profile-label" for="email">
+                  Email
+                </Label>
                 <Input
+                  className="edit-profile-input"
                   type="email"
                   name="email"
                   id="email"
@@ -102,20 +115,21 @@ function EditProfile() {
                   onChange={handleChange}
                 />
               </FormGroup>
-              <Button type="submit" color="primary">
+              <Button
+                className="edit-profile-submit-button"
+                type="submit"
+                color="primary"
+              >
                 Save Changes
               </Button>
             </Form>
           </Card>
         </CardBody>
       ) : (
-        <div>
-            {/* empty div lol */}
-        </div>
+        <div>{/* empty div lol */}</div>
       )}
     </div>
   );
-  
 }
 
 export default EditProfile;

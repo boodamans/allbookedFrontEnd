@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import allbookedApi from '../api/allbookedApi';
 import UserContext from '../context/UserContext';
+import './styles/EditReview.css';
 
 const EditReview = () => {
   const { currentUser } = useContext(UserContext);
@@ -23,7 +24,6 @@ const EditReview = () => {
     e.preventDefault();
 
     try {
-      // Use the editReview method to update the review
       await allbookedApi.editReview(currentUser.username, review_id, {
         rating,
         review_text,
@@ -33,19 +33,15 @@ const EditReview = () => {
       navigate(`/profile/${currentUser.username}`);
     } catch (error) {
       console.error('Error editing review:', error);
-      // Handle error as needed
     }
   };
 
   useEffect(() => {
     const fetchReview = async () => {
       try {
-        // Fetch the existing review details
         const existingReview = await allbookedApi.getReviewById(review_id);
 
-        // Check if the current user is the author of the review
         if (currentUser.username !== existingReview.user_id) {
-          // Redirect or handle unauthorized access
           console.error('Unauthorized access to edit review');
           navigate('/');
         }
@@ -55,25 +51,23 @@ const EditReview = () => {
         setReviewText(existingReview.review_text);
       } catch (error) {
         console.error('Error fetching review:', error);
-        // Handle error as needed
         navigate('/');
       }
     };
 
-    // Fetch review details only if review_id is provided
     if (review_id) {
       fetchReview();
     }
   }, [review_id, currentUser.username, navigate]);
 
   return (
-    <div>
+    <div className="edit-review-container">
       <h2>Edit Review</h2>
       {review && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="edit-review-form">
           <label>
             Rating:
-            <select value={rating} onChange={handleRatingChange}>
+            <select value={rating} onChange={handleRatingChange} className="edit-review-rating">
               {[...Array(10).keys()].map((value) => (
                 <option key={value + 1} value={value + 1}>
                   {value + 1}
@@ -89,11 +83,14 @@ const EditReview = () => {
               value={review_text}
               onChange={handleReviewTextChange}
               placeholder="Write your review here"
+              className="edit-review-textarea"
             />
           </label>
           <br />
 
-          <button type="submit">Submit Review</button>
+          <button type="submit" className="edit-review-submit-button">
+            Submit Review
+          </button>
         </form>
       )}
     </div>
