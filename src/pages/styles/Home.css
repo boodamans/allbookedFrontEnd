@@ -32,6 +32,7 @@ body{
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .home-container Button.btn-primary {

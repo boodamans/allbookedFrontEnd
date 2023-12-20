@@ -37,7 +37,8 @@ function Login({ onLoginSuccess }) {
           </CardTitle>
           <form className="login-form" onSubmit={handleSubmit}>
             <label className="login-label">
-              Username:
+              Username
+              </label>
               <input
                 className="login-input"
                 type="text"
@@ -46,10 +47,10 @@ function Login({ onLoginSuccess }) {
                 onChange={handleChange}
                 required
               />
-            </label>
             <br />
             <label className="login-label">
-              Password:
+              Password
+              </label>
               <input
                 className="login-input"
                 type="password"
@@ -58,7 +59,6 @@ function Login({ onLoginSuccess }) {
                 onChange={handleChange}
                 required
               />
-            </label>
             <br />
             <button className="login-button" type="submit">
               Login
